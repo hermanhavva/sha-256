@@ -8,15 +8,17 @@ vector<uint8_t> sha256::compute(const vector<uint8_t>& msg)
     vector<uint32_t> hashVec = H; 
     vector<uint32_t> W;
     
-    size_t totalBlocks = msgWithPadding.size() * sizeof(uint32_t) / kBitsInBlock;
+    size_t totalBlocks = msgWithPadding.size() * sizeof(uint32_t) * CHAR_BIT / kBitsInBlock;
 
     uint32_t a, b, c, d, e, f, g, h;
     
 
     for (size_t i = 0; i < totalBlocks; i++)
     {
+        W.clear();
+
         // obtain the first block 
-        vector<uint32_t> curBlock = vector<uint32_t>(msgWithPadding.begin() + i * kWordsInBlock, msgWithPadding.begin() + (i + 1) * kWordsInBlock - 1);
+        vector<uint32_t> curBlock = vector<uint32_t>(msgWithPadding.begin() + i * kWordsInBlock, msgWithPadding.begin() + (i + 1) * kWordsInBlock);
 
         // fill the W_0 - W_15 (msg schedules)
         for (size_t t = 0; t <= 63; t++)
@@ -76,10 +78,10 @@ vector<uint8_t> sha256::wordsToBytes(const vector<uint32_t>& input)
 
     for (uint32_t value : input) 
     {
-        result.push_back((value >> 24) & 0xFF); 
-        result.push_back((value >> 16) & 0xFF);
-        result.push_back((value >> 8) & 0xFF);
-        result.push_back(value & 0xFF);         
+        result.emplace_back((value >> 24) & 0xFF); 
+        result.emplace_back((value >> 16) & 0xFF);
+        result.emplace_back((value >> 8) & 0xFF);
+        result.emplace_back(value & 0xFF);
     }
 
     return result;
@@ -93,7 +95,6 @@ vector<uint32_t> sha256::bytesToWords(const std::vector<uint8_t>& bytes)
     {
         uint32_t word = 0;
 
-        // Build a 32-bit word in big-endian order
         for (size_t j = 0; j < 4; ++j)
         {
             word <<= 8;
@@ -112,19 +113,15 @@ vector<uint8_t> sha256::addPadding(const std::vector<uint8_t>& input)
  {
      std::vector<uint8_t> padded = input;
 
-     // Step 1: Message length in bits
      uint64_t bitLen = static_cast<uint64_t>(padded.size()) * 8;
 
-     // Step 2: Append the '1' bit (0x80 == 10000000)
      padded.push_back(0x80);
 
-     // Step 3: Append k zero bytes, where total length ≡ 448 mod 512 (i.e., ≡ 56 mod 64 bytes)
      while ((padded.size() % 64) != 56)
      {
          padded.push_back(0x00);
      }
 
-     // Step 4: Append 64-bit big-endian representation of original message length
      for (int i = 7; i >= 0; --i)
      {
          padded.push_back(static_cast<uint8_t>((bitLen >> (8 * i)) & 0xFF));
@@ -133,49 +130,6 @@ vector<uint8_t> sha256::addPadding(const std::vector<uint8_t>& input)
      return padded;
  }
 
-/*
-vector<uint32_t> sha256::addPadding(const vector<uint32_t>& input)
-{
-    vector<uint8_t> byteInput;
-
-    // Convert input from vector<uint32_t> to vector<uint8_t> (big-endian)
-    for (uint32_t word : input)
-    {
-        byteInput.push_back((word >> 24) & 0xFF);
-        byteInput.push_back((word >> 16) & 0xFF);
-        byteInput.push_back((word >> 8) & 0xFF);
-        byteInput.push_back(word & 0xFF);
-    }
-
-    uint64_t bit_len = static_cast<uint64_t>(byteInput.size()) * 8;
-
-    // Append 0x80 (binary 10000000) to represent the '1' bit
-    byteInput.push_back(0x80);
-
-    // Calculate how many zero bytes to add so that total size ≡ 56 mod 64 (448 bits)
-    size_t mod_len = byteInput.size() % 64;
-    size_t pad_len = (mod_len <= 56) ? (56 - mod_len) : (64 + 56 - mod_len);
-
-    byteInput.insert(byteInput.end(), pad_len, 0x00);
-
-    // Append original length as 64-bit big-endian integer
-    for (int i = 7; i >= 0; --i) {
-        byteInput.push_back(static_cast<uint8_t>((bit_len >> (i * 8)) & 0xFF));
-    }
-
-    // Convert back to vector<uint32_t>
-    std::vector<uint32_t> padded_message;
-    for (size_t i = 0; i < byteInput.size(); i += 4) {
-        uint32_t word = (byteInput[i] << 24) |
-            (byteInput[i + 1] << 16) |
-            (byteInput[i + 2] << 8) |
-            (byteInput[i + 3]);
-        padded_message.push_back(word);
-    }
-
-    return padded_message;
-}
-*/
 
 
 uint32_t sha256::SHR(const uint32_t x, const uint32_t n)
@@ -191,7 +145,7 @@ uint32_t sha256::ROTR(const uint32_t x, const uint32_t n)
         return 0;
     }
 
-    return (x >> n) | (x << 32 - n);
+    return (x >> n) | (x << (32 - n));
 }
 
 uint32_t sha256::Ch(const uint32_t x, const uint32_t y, const uint32_t z)
