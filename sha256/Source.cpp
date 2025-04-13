@@ -15,6 +15,12 @@ int main()
     
     auto vec = sha256::compute(test1);
 
+    if (!sha256::runTests())
+    {
+        cout << "NOO way bro, tests failed" << endl;
+        return 1;
+    }
+
 
     for (auto& item : vec)
     {

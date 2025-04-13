@@ -9,17 +9,30 @@ static class sha256
 {
 public: 
 	sha256() = delete;
-     static vector<uint8_t> compute(const vector<uint8_t>& msg);
-	
-    static vector<uint8_t> addPadding(const vector<uint8_t>& input);
-    static vector<uint8_t> wordsToBytes(const vector<uint32_t>& input);
-    static vector<uint32_t> bytesToWords(const std::vector<uint8_t>& bytes);
+    
+    // #####################
+    // The API exposed is:  
+    // compute(msg: const vector<uint8_t>&): vector<uint8_t> 
+    // runTests(): bool
+    // #####################
+
+    static vector<uint8_t> compute(const vector<uint8_t>& msg);
+    
+    static bool runTests();
 
 private:
     
     static const int kBitsInBlock = 512;
     static const int kBitsInWord = 32;
     static const int kWordsInBlock = kBitsInBlock / kBitsInWord;
+    static const vector<uint32_t> K;
+    static const vector<uint32_t> H;
+
+    static vector<uint8_t> addPadding(const vector<uint8_t>& input);
+    
+    static vector<uint8_t> wordsToBytes(const vector<uint32_t>& input);
+    
+    static vector<uint32_t> bytesToWords(const std::vector<uint8_t>& bytes);
 
     static uint32_t Ch(const uint32_t x, const uint32_t y, const uint32_t z);
 
@@ -43,6 +56,4 @@ private:
 
     static uint32_t sigma1(uint32_t x);
 
-    static const vector<uint32_t> K;
-    static const vector<uint32_t> H;
 };
