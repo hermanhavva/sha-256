@@ -2,7 +2,7 @@
 #include <vector>
 #include <iostream>
 #include <format>
-
+ 
 using namespace std;
 
 static class sha256
