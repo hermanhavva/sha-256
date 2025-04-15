@@ -1,0 +1,71 @@
+user@DESKTOP-16ROIQU:/mnt/c/c++projects/5term/crypto_projects/sha-256$ openssl asn1parse -in kseua.pem -inform PEM
+    0:d=0  hl=4 l= 918 cons: SEQUENCE
+    4:d=1  hl=4 l= 829 cons: SEQUENCE
+    8:d=2  hl=2 l=   3 cons: cont [ 0 ]
+   10:d=3  hl=2 l=   1 prim: INTEGER           :02
+   13:d=2  hl=2 l=  17 prim: INTEGER           :FC029649D0B437B61186D8290B1019F1
+   32:d=2  hl=2 l=  10 cons: SEQUENCE
+   34:d=3  hl=2 l=   8 prim: OBJECT            :ecdsa-with-SHA256
+   44:d=2  hl=2 l=  59 cons: SEQUENCE
+   46:d=3  hl=2 l=  11 cons: SET
+   48:d=4  hl=2 l=   9 cons: SEQUENCE
+   50:d=5  hl=2 l=   3 prim: OBJECT            :countryName
+   55:d=5  hl=2 l=   2 prim: PRINTABLESTRING   :US
+   59:d=3  hl=2 l=  30 cons: SET
+   61:d=4  hl=2 l=  28 cons: SEQUENCE
+   63:d=5  hl=2 l=   3 prim: OBJECT            :organizationName
+   68:d=5  hl=2 l=  21 prim: PRINTABLESTRING   :Google Trust Services
+   91:d=3  hl=2 l=  12 cons: SET
+   93:d=4  hl=2 l=  10 cons: SEQUENCE
+   95:d=5  hl=2 l=   3 prim: OBJECT            :commonName
+  100:d=5  hl=2 l=   3 prim: PRINTABLESTRING   :WE1
+  105:d=2  hl=2 l=  30 cons: SEQUENCE
+  107:d=3  hl=2 l=  13 prim: UTCTIME           :250413112735Z
+  122:d=3  hl=2 l=  13 prim: UTCTIME           :250712122508Z
+  137:d=2  hl=2 l=  17 cons: SEQUENCE
+  139:d=3  hl=2 l=  15 cons: SET
+  141:d=4  hl=2 l=  13 cons: SEQUENCE
+  143:d=5  hl=2 l=   3 prim: OBJECT            :commonName
+  148:d=5  hl=2 l=   6 prim: PRINTABLESTRING   :kse.ua
+  156:d=2  hl=2 l=  89 cons: SEQUENCE
+  158:d=3  hl=2 l=  19 cons: SEQUENCE
+  160:d=4  hl=2 l=   7 prim: OBJECT            :id-ecPublicKey
+  169:d=4  hl=2 l=   8 prim: OBJECT            :prime256v1
+  179:d=3  hl=2 l=  66 prim: BIT STRING
+  247:d=2  hl=4 l= 586 cons: cont [ 3 ]
+  251:d=3  hl=4 l= 582 cons: SEQUENCE
+  255:d=4  hl=2 l=  14 cons: SEQUENCE
+  257:d=5  hl=2 l=   3 prim: OBJECT            :X509v3 Key Usage
+  262:d=5  hl=2 l=   1 prim: BOOLEAN           :255
+  265:d=5  hl=2 l=   4 prim: OCTET STRING      [HEX DUMP]:03020780
+  271:d=4  hl=2 l=  19 cons: SEQUENCE
+  273:d=5  hl=2 l=   3 prim: OBJECT            :X509v3 Extended Key Usage
+  278:d=5  hl=2 l=  12 prim: OCTET STRING      [HEX DUMP]:300A06082B06010505070301
+  292:d=4  hl=2 l=  12 cons: SEQUENCE
+  294:d=5  hl=2 l=   3 prim: OBJECT            :X509v3 Basic Constraints
+  299:d=5  hl=2 l=   1 prim: BOOLEAN           :255
+  302:d=5  hl=2 l=   2 prim: OCTET STRING      [HEX DUMP]:3000
+  306:d=4  hl=2 l=  29 cons: SEQUENCE
+  308:d=5  hl=2 l=   3 prim: OBJECT            :X509v3 Subject Key Identifier
+  313:d=5  hl=2 l=  22 prim: OCTET STRING      [HEX DUMP]:0414613637D89F9F10FE4E9C1D8CDB280999BF86B0A5
+  337:d=4  hl=2 l=  31 cons: SEQUENCE
+  339:d=5  hl=2 l=   3 prim: OBJECT            :X509v3 Authority Key Identifier
+  344:d=5  hl=2 l=  24 prim: OCTET STRING      [HEX DUMP]:301680149077923567C4FFA8CCA9E67BD980797BCC93F938
+  370:d=4  hl=2 l=  94 cons: SEQUENCE
+  372:d=5  hl=2 l=   8 prim: OBJECT            :Authority Information Access
+  382:d=5  hl=2 l=  82 prim: OCTET STRING      [HEX DUMP]:3050302706082B06010505073001861B687474703A2F2F6F2E706B692E676F6F672F732F7765312F5F4149302506082B060105050730028619687474703A2F2F692E706B692E676F6F672F7765312E637274
+  466:d=4  hl=2 l=  27 cons: SEQUENCE
+  468:d=5  hl=2 l=   3 prim: OBJECT            :X509v3 Subject Alternative Name
+  473:d=5  hl=2 l=  20 prim: OCTET STRING      [HEX DUMP]:301282066B73652E756182082A2E6B73652E7561
+  495:d=4  hl=2 l=  19 cons: SEQUENCE
+  497:d=5  hl=2 l=   3 prim: OBJECT            :X509v3 Certificate Policies
+  502:d=5  hl=2 l=  12 prim: OCTET STRING      [HEX DUMP]:300A3008060667810C010201
+  516:d=4  hl=2 l=  54 cons: SEQUENCE
+  518:d=5  hl=2 l=   3 prim: OBJECT            :X509v3 CRL Distribution Points
+  523:d=5  hl=2 l=  47 prim: OCTET STRING      [HEX DUMP]:302D302BA029A0278625687474703A2F2F632E706B692E676F6F672F7765312F443577593477314264716F2E63726C
+  572:d=4  hl=4 l= 261 cons: SEQUENCE
+  576:d=5  hl=2 l=  10 prim: OBJECT            :CT Precertificate SCTs
+  588:d=5  hl=3 l= 246 prim: OCTET STRING      [HEX DUMP]:0481F300F1007600DDDCCA3495D7E11605E79532FAC79FF83D1C50DFDB003A1412760A2CACBBC82A000001962F1E9B84000004030047304502200D5126D22C2C020DC2B1404ABD5AF5787342684086105A59ECF04D394A1B7FB6022100A1142A83FB1D2115FCD1E528450BE8D8DF27F648E3FAC4231FE91D0DAE828703007700CCFB0F6A85710965FE959B53CEE9B27C22E9855C0D978DB6A97E54C0FE4C0DB0000001962F1E9B8F0000040300483046022100D8BAC043CD0819030D1C6EA92888F7ACBD422523F7490BEF2F85DBFA516966750221008387869C7ED5A0312125A062F1A90C0C45D7922993E7C55E7EB90E96488CCE74
+  837:d=1  hl=2 l=  10 cons: SEQUENCE
+  839:d=2  hl=2 l=   8 prim: OBJECT            :ecdsa-with-SHA256
+  849:d=1  hl=2 l=  71 prim: BIT STRING
